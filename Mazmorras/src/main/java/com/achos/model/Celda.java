@@ -59,4 +59,8 @@ public class Celda {
         return ocupadaPor;
     }
 
+    public void ataqueCeldaTrampa(Personaje personaje){
+        personaje.setVida(personaje.getVida()-2);
+    }
+
 }

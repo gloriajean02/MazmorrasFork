@@ -38,6 +38,8 @@ public class LectorMapa {
                         tipoCelda = TipoCelda.SUELO;
                     } else if (celda.equals("o")) {
                         tipoCelda = TipoCelda.PARED;
+                    } else if (celda.equals("t")) {
+                        tipoCelda = TipoCelda.TRAMPA;
                     } else {
                         throw new IllegalArgumentException("Carácter inválido en el mapa: " + celda);
                     }

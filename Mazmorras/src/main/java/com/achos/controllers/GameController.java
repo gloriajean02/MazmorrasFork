@@ -56,6 +56,7 @@ public class GameController implements Observer {
     // Usamos las rutas relativas para las imágenes
     private final String URL_SUELO = "/com/achos/images/suelo.png";
     private final String URL_PARED = "/com/achos/images/paredes.png";
+    private final String URL_TRAMPA = "/com/achos/images/TRAMPA.png";
 
     private Partida partida = Partida.getInstance(); // Obtener la partida actual
 
@@ -116,6 +117,8 @@ public class GameController implements Observer {
             fondo.setImage(new Image(getClass().getResource(URL_PARED).toExternalForm()));
         } else if (celda.getTipoCelda() == TipoCelda.SUELO) { // Si es un suelo
             fondo.setImage(new Image(getClass().getResource(URL_SUELO).toExternalForm()));
+        } else if (celda.getTipoCelda() == TipoCelda.TRAMPA) {
+            fondo.setImage(new Image(getClass().getResource(URL_TRAMPA).toExternalForm()));
         }
         stackPane.getChildren().add(fondo); // Añadir el fondo al StackPane
 
@@ -130,6 +133,13 @@ public class GameController implements Observer {
                                                                                                                    // ruta
                                                                                                                    // relativa
             stackPane.getChildren().add(personajeView); // Añadir el personaje al StackPane
+        }
+
+        if (p != null && celda.getTipoCelda() == TipoCelda.TRAMPA) {
+            celda.ataqueCeldaTrampa(p);
+            if (partida.gameOver()) {
+                partida.setGameOver(true);
+            }
         }
 
         return stackPane; // Devolver el StackPane con la celda
